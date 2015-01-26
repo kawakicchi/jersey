@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="jersey">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <dependent-module archiveName="azuki-business-1.4.4.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/azuki-business/azuki-business">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="azuki-persistence-1.4.4.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/azuki-persistence/azuki-persistence">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="azuki-dsql-1.4.4.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/azuki-dsql/azuki-dsql">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="azuki-jersey-1.4.4.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/azuki-jersey/azuki-jersey">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="azuki-servlet-1.4.4.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/azuki-servlet/azuki-servlet">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="azuki-biz-1.4.4.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/azuki-biz/azuki-biz">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="azuki-base-1.4.4.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/azuki-base/azuki-base">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="jersey"/>
+        <property name="java-output-path" value="/jersey/target/classes"/>
+    </wb-module>
+</project-modules>

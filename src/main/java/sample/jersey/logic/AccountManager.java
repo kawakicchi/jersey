@@ -53,4 +53,30 @@ public interface AccountManager extends Logic {
 	 * @return 結果
 	 */
 	public boolean logout(final String authToken);
+
+	/**
+	 * <ul>
+	 * <li>token</li>
+	 * </ul>
+	 * @param name
+	 * @param email
+	 * @param password
+	 * @return
+	 */
+	public Map<String, Object> regist(final String name, final String email, final String password);
+
+	/**
+	 * アクティベーション
+	 * <p>
+	 * 結果は下記の情報をマップで返す。
+	 * <ul>
+	 * <li>authToken - 認証トークン</li>
+	 * <li>name - 名前</li>
+	 * </ul>
+	 * </p>
+	 * 
+	 * @param token トークン
+	 * @return 結果。アクティベーションできない場合、空のマップを返す。
+	 */
+	public Map<String, Object> activate(final String token);
 }

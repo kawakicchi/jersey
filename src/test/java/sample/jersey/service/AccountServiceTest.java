@@ -85,7 +85,12 @@ public final class AccountServiceTest extends AbstractServiceTest {
 	@Test
 	public void regist() {
 		RegistRequest req = new RegistRequest();
-		Entity<RegistRequest> e = Entity.entity(req, MediaType.APPLICATION_JSON_TYPE);
+		req.setName("tester");
+		req.setMailAddress("tester@muchumuchu.com");
+		req.setPassword("test");
+		req.setConfirm("test");
+		
+		Entity<RegistRequest> e = Entity.entity(req, MediaType.APPLICATION_JSON_TYPE);		
 
 		Response response = post("/account/regist", e);
 

@@ -1,0 +1,26 @@
+# ------------------------------------------------------------------------------
+# AccountManagerI01
+#
+# ------------------------------------------------------------------------------
+
+                INSERT INTO
+                    td_preaccount
+                (
+                    account_id
+                  , name
+                  , email
+                  , password
+                  , token
+                  , period_date
+                  , create_date
+                )
+                VALUES
+                (
+${accountId}        ?
+${name}           , ?
+${email}          , ?
+${password}       , ?
+${token}          , ?
+${periodDate}     , ?
+${createDate}     , ?
+                )

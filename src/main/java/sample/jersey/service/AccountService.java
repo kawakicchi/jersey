@@ -10,7 +10,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.azkfw.util.StringUtility;
+import org.azkfw.business.BusinessServiceException;
+import org.azkfw.util.MapUtility;
 
 import sample.jersey.logic.AccountManager;
 import sample.jersey.request.AbstractAuthTokenRequest;
@@ -27,7 +28,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @version 1.0.0 2015/01/23
  * @author kawakicchi
  */
-public final class AccountService extends AbstractBusinessService {
+public final class AccountService extends AbstractBaseService {
+
+	public AccountService() {
+		super(AccountService.class);
+	}
 
 	@POST
 	@Path("login")
@@ -39,23 +44,19 @@ public final class AccountService extends AbstractBusinessService {
 	 */
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public LoginResponse login(final LoginRequest req) {
+	public LoginResponse login(final LoginRequest req) throws Exception {
 		LoginResponse res = new LoginResponse();
-		try {
-			AccountManager manager = getLogic(AccountManager.class);
 
-			Map<String, Object> result = manager.login(req.getMailAddress(), req.getPassword());
-			if (!result.isEmpty()) {
-				setSuccess(res);
-
-				res.setAuthToken((String) result.get("authToken"));
-				res.setName((String) result.get("name"));
-			} else {
-				setError(res, 1, "Error");
-			}
-		} catch (Exception ex) {
-			setSystemError(res);
+		AccountManager manager = (AccountManager) getLogic("AccountManager");
+		Map<String, Object> result = manager.login(req.getMailAddress(), req.getPassword());
+		if (!result.isEmpty()) {
+			setSuccess(res);
+			res.setAuthToken((String) result.get("authToken"));
+			res.setName((String) result.get("name"));
+		} else {
+			setError(res, 1, "Error");
 		}
+
 		return res;
 	}
 
@@ -69,20 +70,17 @@ public final class AccountService extends AbstractBusinessService {
 	 */
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public LogoutResponse logout(final LogoutRequest req) {
+	public LogoutResponse logout(final LogoutRequest req) throws Exception {
 		LogoutResponse res = new LogoutResponse();
-		try {
-			AccountManager manager = getLogic(AccountManager.class);
 
-			boolean result = manager.logout(req.getAuthToken());
-			if (result) {
-				setSuccess(res);
-			} else {
-				setError(res, 1, "Error");
-			}
-		} catch (Exception ex) {
-			setSystemError(res);
+		AccountManager manager = (AccountManager) getLogic("AccountManager");
+		boolean result = manager.logout(req.getAuthToken());
+		if (result) {
+			setSuccess(res);
+		} else {
+			setError(res, 1, "Error");
 		}
+		
 		return res;
 	}
 
@@ -96,13 +94,17 @@ public final class AccountService extends AbstractBusinessService {
 	 */
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public RegistResponse regist(final RegistRequest req) {
+	public RegistResponse regist(final RegistRequest req) throws Exception {
 		RegistResponse res = new RegistResponse();
-		try {
 
-		} catch (Exception ex) {
-			setSystemError(res);
+		AccountManager manager = (AccountManager) getLogic("AccountManager");
+		Map<String, Object> result = manager.regist(req.getName(), req.getMailAddress(), req.getPassword());
+		if (MapUtility.isNotEmpty(result)) {
+			// TODO: メール送信
+			String token = (String) result.get("token");
+			setSuccess(res);
 		}
+
 		return res;
 	}
 
@@ -116,12 +118,10 @@ public final class AccountService extends AbstractBusinessService {
 	 */
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.TEXT_HTML)
-	public String activate(@PathParam("token") final String token) {
-		if (StringUtility.isNotEmpty(token)) {
-			return "OK(" + token + ")";
-		} else {
-			return "NG";
-		}
+	public String activate(@PathParam("token") final String token) throws Exception {
+		String html = "";
+
+		return html;
 	}
 
 	/**

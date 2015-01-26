@@ -39,21 +39,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @version 1.0.0 2015/01/23
  * @author kawakicchi
  */
-public final class CustomerService extends AbstractBusinessService {
+public final class CustomerService extends AbstractBaseService {
+
+	public CustomerService() {
+		super(CustomerService.class);
+	}
 
 	@POST
 	@Path("")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public CustomerResponse customer(final CustomerRequest req) {
+	public CustomerResponse customer(final CustomerRequest req) throws Exception {
 		CustomerResponse res = new CustomerResponse();
-		try {
 
-			setSuccess(res);
+		setSuccess(res);
 
-		} catch (Exception ex) {
-			setSystemError(res);
-		}
 		return res;
 	}
 
@@ -67,15 +67,11 @@ public final class CustomerService extends AbstractBusinessService {
 	 */
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public RegistResponse regist(final RegistRequest req) {
+	public RegistResponse regist(final RegistRequest req) throws Exception {
 		RegistResponse res = new RegistResponse();
-		try {
 
-			setSuccess(res);
-
-		} catch (Exception ex) {
-			setSystemError(res);
-		}
+		setSuccess(res);
+		
 		return res;
 	}
 
@@ -89,15 +85,11 @@ public final class CustomerService extends AbstractBusinessService {
 	 */
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public UpdateResponse update(final UpdateRequest req) {
+	public UpdateResponse update(final UpdateRequest req) throws Exception {
 		UpdateResponse res = new UpdateResponse();
-		try {
 
-			setSuccess(res);
+		setSuccess(res);
 
-		} catch (Exception ex) {
-			setSystemError(res);
-		}
 		return res;
 	}
 

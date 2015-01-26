@@ -34,7 +34,11 @@ import sample.jersey.response.AbstractResponse;
  * @version 1.0.0 2015/01/23
  * @author kawakicchi
  */
-public final class MailingService extends AbstractBusinessService {
+public final class MailingService extends AbstractBaseService {
+
+	public MailingService() {
+		super(MailingService.class);
+	}
 
 	@POST
 	@Path("send")
@@ -46,15 +50,10 @@ public final class MailingService extends AbstractBusinessService {
 	 */
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public SendResponse send(final SendRequest req) {
+	public SendResponse send(final SendRequest req) throws Exception {
 		SendResponse res = new SendResponse();
-		try {
 
-			setSuccess(res);
-
-		} catch (Exception ex) {
-			setSystemError(res);
-		}
+		setSuccess(res);
 		return res;
 	}
 

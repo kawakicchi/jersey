@@ -20,9 +20,6 @@ package sample.jersey.service;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Response;
-
 import org.azkfw.jersey.test.AbstractJerseyTestCase;
 
 /**
@@ -36,17 +33,10 @@ public abstract class AbstractServiceTest extends AbstractJerseyTestCase {
 	protected Map<String, String> getInitParams() {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("jersey.config.server.provider.packages", "sample.jersey;");
-		params.put("jersey.config.server.provider.classnames", "org.glassfish.jersey.media.multipart.MultiPartFeature");
+		params.put("jersey.config.server.provider.classnames", "org.glassfish.jersey.media.multipart.MultiPartFeature;org.azkfw.jersey.filter.BusinessSupportFilter;sample.jersey.handler.ExceptionHandler;");
+		params.put("com.sun.jersey.spi.container.ContainerRequestFilters","org.azkfw.jersey.filter.BusinessSupportFilter");
+		params.put("com.sun.jersey.spi.container.ContainerResponseFilters","org.azkfw.jersey.filter.BusinessSupportFilter");
 		return params;
 	}
 
-	protected final Response get(final String aPath) {
-		Response response = target(aPath).request().get();
-		return response;
-	}
-
-	protected final Response post(final String path, final Entity<?> entity) {
-		Response response = target(path).request().post(entity);
-		return response;
-	}
 }

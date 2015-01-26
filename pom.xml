@@ -29,12 +29,23 @@
 		<dependency>
 			<groupId>org.azkfw</groupId>
 			<artifactId>azuki-business</artifactId>
-			<version>1.4.3</version>
+			<version>1.4.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.azkfw</groupId>
 			<artifactId>azuki-jersey</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.4.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.azkfw</groupId>
+			<artifactId>azuki-biz</artifactId>
+			<version>1.4.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.1-901.jdbc4</version>
 		</dependency>
 
 		<dependency>
@@ -51,7 +62,7 @@
 		<dependency>
 			<groupId>org.azkfw</groupId>
 			<artifactId>azuki-jersey-test</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.4.4</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
