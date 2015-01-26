@@ -12,6 +12,16 @@
   See the License for the specific language governing permissions and
   limitations under the License. See accompanying LICENSE file.
 -->
+<!DOCTYPE azuki[
+  <!ELEMENT azuki  (logics)>
+  <!ELEMENT logics (logic*)>
+  
+  <!ATTLIST logic
+        name      CDATA #REQUIRED
+        logic     CDATA #REQUIRED
+        interface CDATA #REQUIRED
+        >
+]>
 <azuki>
 	<logics>
 		<logic name="AccountManager" logic="sample.jersey.logic.AccountManagerImpl" interface="sample.jersey.logic.AccountManager" />
